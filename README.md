@@ -11,25 +11,32 @@
 
 ## 快速开始（Ubuntu 24）
 
-### 1. 一键环境安装
+### 方法一：完整安装（首次使用推荐）
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/0xliangjiang/zjp.git
+cd zjp
+
+# 2. 检查并安装环境依赖
+./install_ubuntu.sh
+
+# 3. 启动系统
+./start.sh
+```
+
+### 方法二：快速启动（已有Python3和Node.js）
 
 ```bash
 # 克隆项目
 git clone https://github.com/0xliangjiang/zjp.git
 cd zjp
 
-# 安装环境依赖
-./install_ubuntu.sh
+# 快速启动（跳过环境检查）
+./quick_start.sh
 ```
 
-### 2. 启动系统
-
-```bash
-# 一键启动（自动创建venv虚拟环境）
-./start.sh
-```
-
-### 3. 停止系统
+### 停止系统
 
 ```bash
 # 停止所有服务
@@ -53,8 +60,9 @@ zjp/
 │   ├── node_modules/         # 前端依赖（自动安装）
 │   ├── package.json
 │   └── vite.config.js
-├── install_ubuntu.sh         # Ubuntu环境安装脚本
-├── start.sh                  # 启动脚本（自动创建venv）
+├── install_ubuntu.sh         # Ubuntu环境检查安装脚本
+├── start.sh                  # 完整启动脚本（含环境检查）
+├── quick_start.sh            # 快速启动脚本（跳过环境检查）
 ├── stop.sh                   # 停止脚本
 └── README.md
 ```
@@ -62,9 +70,10 @@ zjp/
 ## 脚本说明
 
 ### install_ubuntu.sh
-- 自动安装Python3、pip、venv
-- 自动安装Node.js 18
-- 安装构建工具
+- 智能检查已安装的组件
+- 只安装缺失的依赖项
+- 检查Python3、pip、venv、Node.js版本
+- 避免重复安装
 
 ### start.sh
 - 检查环境依赖
@@ -72,6 +81,11 @@ zjp/
 - 激活虚拟环境并安装Python依赖
 - 自动安装前端依赖（如果不存在）
 - 启动后端和前端服务
+
+### quick_start.sh
+- 跳过环境检查，直接启动
+- 适合已确认环境正常的情况
+- 更快的启动速度
 
 ### stop.sh  
 - 优雅停止所有服务
