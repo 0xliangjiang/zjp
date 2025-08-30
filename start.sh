@@ -1,24 +1,61 @@
 #!/bin/bash
 
-echo "正在启动抢购系统后台管理..."
+echo "🚀 正在启动紫金盘商城系统..."
 
-# 启动后端
-echo "启动后端服务..."
+# 检查Python3是否安装
+if ! command -v python3 &> /dev/null; then
+    echo "❌ Python3 未安装，请先安装Python3"
+    echo "   sudo apt update && sudo apt install python3 python3-pip python3-venv"
+    exit 1
+fi
+
+# 检查Node.js是否安装
+if ! command -v node &> /dev/null; then
+    echo "❌ Node.js 未安装，请先安装Node.js"
+    echo "   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -"
+    echo "   sudo apt-get install -y nodejs"
+    exit 1
+fi
+
+# 初始化后端虚拟环境
+echo "🐍 初始化Python虚拟环境..."
 cd backend
-python3 app.py &
+
+# 创建虚拟环境（如果不存在）
+if [ ! -d "venv" ]; then
+    echo "   创建虚拟环境..."
+    python3 -m venv venv
+fi
+
+# 激活虚拟环境
+echo "   激活虚拟环境..."
+source venv/bin/activate
+
+# 安装依赖
+echo "   安装Python依赖..."
+pip install -r requirements.txt
+
+# 启动后端服务
+echo "🔧 启动后端服务..."
+python app.py &
 BACKEND_PID=$!
 
 # 等待后端启动
 sleep 3
 
-# 授权测试用户
-echo "授权测试用户..."
-python3 test_authorize.py
-
-# 启动前端
-echo "启动前端服务..."
+# 初始化前端
+echo "📦 初始化前端环境..."
 cd ../frontend
-npx vite &
+
+# 安装前端依赖（如果node_modules不存在）
+if [ ! -d "node_modules" ]; then
+    echo "   安装前端依赖..."
+    npm install
+fi
+
+# 启动前端服务
+echo "🌐 启动前端服务..."
+npm run dev &
 FRONTEND_PID=$!
 
 echo ""

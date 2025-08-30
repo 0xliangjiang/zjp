@@ -1,47 +1,81 @@
-# 抢购系统后台管理
+# 紫金盘商城系统
 
-一个基于 Flask + Vue.js 的抢购系统后台管理网站。
+一个基于 Flask + Vue.js 的商城管理系统。
+
+## 系统要求
+
+- Ubuntu 24.04 LTS（推荐）
+- Python 3.8+ 
+- Node.js 18+
+- 2GB+ RAM
+
+## 快速开始（Ubuntu 24）
+
+### 1. 一键环境安装
+
+```bash
+# 克隆项目
+git clone https://github.com/0xliangjiang/zjp.git
+cd zjp
+
+# 安装环境依赖
+./install_ubuntu.sh
+```
+
+### 2. 启动系统
+
+```bash
+# 一键启动（自动创建venv虚拟环境）
+./start.sh
+```
+
+### 3. 停止系统
+
+```bash
+# 停止所有服务
+./stop.sh
+```
 
 ## 项目结构
 
 ```
-zijinpan/
-├── backend/                # Flask 后端
-│   ├── app.py             # 主应用文件
-│   ├── requirements.txt   # Python 依赖
-│   └── shopping_system.db # SQLite 数据库（运行后自动生成）
-├── frontend/              # Vue.js 前端
+zjp/
+├── backend/                    # Flask 后端
+│   ├── app.py                 # 主应用文件
+│   ├── requirements.txt       # Python 依赖
+│   └── venv/                  # Python虚拟环境（自动创建）
+├── frontend/                  # Vue.js 前端
 │   ├── src/
-│   │   ├── components/    # 组件
-│   │   ├── views/        # 页面
-│   │   ├── App.vue       # 根组件
-│   │   └── main.js       # 入口文件
+│   │   ├── components/        # 组件
+│   │   ├── views/            # 页面
+│   │   ├── App.vue           # 根组件
+│   │   └── main.js           # 入口文件
+│   ├── node_modules/         # 前端依赖（自动安装）
 │   ├── package.json
 │   └── vite.config.js
+├── install_ubuntu.sh         # Ubuntu环境安装脚本
+├── start.sh                  # 启动脚本（自动创建venv）
+├── stop.sh                   # 停止脚本
 └── README.md
 ```
 
-## 功能特性
+## 脚本说明
 
-### 认证功能
-- 手机号密码登录
-- 管理员授权机制
-- JWT Token 认证
+### install_ubuntu.sh
+- 自动安装Python3、pip、venv
+- 自动安装Node.js 18
+- 安装构建工具
 
-### 五大功能模块
-1. **市场列表** - 查看市场商品和抢购
-2. **商品列表** - 浏览可购买商品
-3. **持仓管理** - 查看持仓和收益情况
-4. **托管管理** - 设置定时抢购任务，自动执行
-5. **用户信息** - 查看账户信息和盈利情况
+### start.sh
+- 检查环境依赖
+- 自动创建Python虚拟环境（backend/venv/）
+- 激活虚拟环境并安装Python依赖
+- 自动安装前端依赖（如果不存在）
+- 启动后端和前端服务
 
-## 快速开始
-
-### 一键启动（推荐）
-
-```bash
-./start.sh
-```
+### stop.sh  
+- 优雅停止所有服务
+- 清理进程
 
 ### 手动启动
 
