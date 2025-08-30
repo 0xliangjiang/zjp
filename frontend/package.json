@@ -1,0 +1,21 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vitejs/plugin-vue2": "^2.3.3",
+    "axios": "^1.10.0",
+    "element-ui": "^2.15.14",
+    "vite": "^4.5.14",
+    "vue": "^2.7.16"
+  }
+}
